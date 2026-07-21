@@ -6,6 +6,6 @@ public class TestRunner {
 
     @Karate.Test
     Karate runFirstTest(){
-        return Karate.run("../features/SecondTest").relativeTo(getClass());
+        return Karate.run("../features/Company").relativeTo(getClass());
     }
 }
