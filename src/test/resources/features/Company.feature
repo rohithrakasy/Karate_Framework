@@ -2,29 +2,36 @@ Feature: Create a Comapany with all required details
 
   Background:
 
-    * def reqBody =
-    """
-    {
-        "email": "rohith+pfaadmin@coreaiconsulting.com",
-        "password": "test1234",
-        "device_id": "PFA-device-540"
-    }
-    """
-
-    * def randomNumber = Math.floor(Math.random()*1000000)
-
-    Given url 'https://devapi.suretyforce.com/apim'
-    And path '/api/auth/userlogin'
-    And request reqBody
-    When method POST
-    Then status 200
-    And print response
-    * def token = response.token
-    * def tenantId = response.payload.user.tenant_id.id
-
-    And print tenantId
+#    * def reqBody =
+#    """
+#    {
+#        "email": "rohith+pfaadmin@coreaiconsulting.com",
+#        "password": "test1234",
+#        "device_id": "PFA-device-540"
+#    }
+#    """
 
 
+
+#    Given url 'https://devapi.suretyforce.com/apim'
+#    And path '/api/auth/userlogin'
+#    And request reqBody
+#    When method POST
+#    Then status 200
+#    And print response
+#    * def token = response.token
+#    * def tenantId = response.payload.user.tenant_id.id
+#
+#    And print tenantId
+
+ * def randomNumber = Math.floor(Math.random()*1000000)
+
+ * def loginResponse = callonce read('classpath:features/auth/Login.feature')
+
+ * print loginResponse
+
+ * def token = loginResponse.token
+ * def tenantId = loginResponse.tenantId
 
 
 
@@ -48,6 +55,7 @@ Feature: Create a Comapany with all required details
       "addressId": "a41e8209-2a6f-4ada-b31a-dbba612c8919"
     }
     """
+
 
     Given url 'https://devapi.suretyforce.com/apim'
     And path '/lead/api/companies'

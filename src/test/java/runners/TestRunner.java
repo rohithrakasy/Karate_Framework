@@ -6,6 +6,8 @@ public class TestRunner {
 
     @Karate.Test
     Karate runFirstTest(){
-        return Karate.run("../features/Company").relativeTo(getClass());
+
+//        return Karate.run("classpath:features/auth/Login.feature");
+        return Karate.run("classpath:features/Principal.feature");
     }
 }
